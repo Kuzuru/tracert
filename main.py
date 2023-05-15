@@ -35,8 +35,9 @@ if __name__ == '__main__':
     arguments = arg_parser.parse_args()
 
     try:
-        traceroute_entries = execute_traceroute(arguments.ip, arguments.max_hops)
-        display_traceroute(traceroute_entries)
+        tracer = TraceRunner(arguments.ip, arguments.max_hops)
+        entries = tracer.execute_trace()
+        display_traceroute(entries)
     except Exception as e:
         print("Unexpected error occurred:", e)
         print("Please check the input and try again with administrator permissions")
